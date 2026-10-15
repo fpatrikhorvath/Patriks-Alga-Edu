@@ -1,0 +1,112 @@
+<div class="workspace-container">
+  <div class="workspace-content">
+    <div class="lesson-panel" *ngIf="activeTask.lessonContent.length">
+      <div class="panel-header">Mielőtt nekilátsz</div>
+      <div class="lesson-meta">
+        <span class="difficulty">{{ activeTask.gradeLabel }}</span>
+        <span class="difficulty">{{ activeTask.difficulty }}</span>
+        <span>{{ activeTask.learningGoal }}</span>
+      </div>
+      <div class="lesson-section">
+        <h3>A legfontosabbak</h3>
+        <p class="lesson-explanation">{{ activeTask.description }}</p>
+        <ul class="lesson-list">
+          <li *ngFor="let item of activeTask.lessonContent">{{ item }}</li>
+        </ul>
+      </div>
+      <div class="lesson-section examples-section">
+        <h3>Mini példák</h3>
+        <article class="mini-example" *ngFor="let example of activeTask.miniExamples">
+          <h4>{{ example.title }}</h4>
+          <p>{{ example.explanation }}</p>
+          <pre class="example-code"><code>{{ example.code }}</code></pre>
+          <p class="example-output-label">Eredmény:</p>
+          <pre class="example-output">{{ example.output }}</pre>
+          @if (example.image) {
+            <img class="example-image" [src]="example.image" alt="A mini példa térképe" width="220">
+          }
+        </article>
+      </div>
+      <div class="lesson-section hint-section">
+        <h3>Segítség egy nehéz ponthoz</h3>
+        <p>{{ activeTask.hint }}</p>
+      </div>
+    </div>
+
+    <div class="exercise-list">
+      <article class="exercise-card" *ngFor="let exercise of exercises">
+        <div class="exercise-heading">
+          <div>
+            <p class="exercise-stage">{{ exercise.stage }}</p>
+            <h3>{{ exercise.title }}</h3>
+          </div>
+        </div>
+
+        <div class="exercise-tabs" role="group" aria-label="Feladat nézetei">
+          <button type="button" class="exercise-tab" [class.active]="activeExerciseView === 'task'" [attr.aria-pressed]="activeExerciseView === 'task'" (click)="activeExerciseView = 'task'">Feladat</button>
+          <button type="button" class="exercise-tab" [class.active]="activeExerciseView === 'solution'" [attr.aria-pressed]="activeExerciseView === 'solution'" (click)="activeExerciseView = 'solution'">Megoldás</button>
+        </div>
+
+        <div class="exercise-view" [hidden]="activeExerciseView !== 'task'">
+        <div class="exercise-copy">
+          <h4>Feladat</h4>
+          <p>{{ exercise.task }}</p>
+          @if (activeTask.id === 1) {
+            <figure class="maze-figure">
+              <img
+                ngSrc="/images/maze-example.png"
+                width="751"
+                height="541"
+                priority
+                alt="Az útvesztő rácstérképe. A kék plusz a kezdőpont, a kék kör a kijárat, a barna mezők falak."
+              >
+              <figcaption>Útvesztő térkép: a kék plusztól kell eljutni a kék körig.</figcaption>
+            </figure>
+          }
+          <h4>Megvalósítási lépések</h4>
+          <ol class="requirements-list">
+            <li *ngFor="let requirement of exercise.requirements">{{ requirement }}</li>
+          </ol>
+          <h4>Bemeneti értékek</h4>
+          <pre class="value-block">{{ exercise.inputValues.join('\n') }}</pre>
+          <h4>Elvárt kimenet</h4>
+          <pre class="value-block">{{ exercise.expectedOutput }}</pre>
+        </div>
+        <div class="task-grid">
+          <div class="editor-panel">
+            <div class="panel-header">Python szerkesztő</div>
+            <textarea [(ngModel)]="exercise.starterCode" (paste)="handleCodePaste($event, exercise)" rows="12" class="code-editor"></textarea>
+            <p class="copy-status" aria-live="polite">{{ indentationStatus() }}</p>
+          </div>
+          <div class="terminal-panel">
+            <div class="panel-header">Konzol kimenet</div>
+            <pre class="terminal-screen">{{ exercise.output() || pythonLoadError() || (isPythonReady() ? 'A Python környezet kész.' : 'A Python környezet betöltése...') }}</pre>
+          </div>
+        </div>
+        <div class="editor-toolbar">
+          <button type="button" class="clear-button" (click)="restoreCode(exercise)">Kód visszaállítása</button>
+          <button type="button" class="clear-button" (click)="showHelp(exercise)">Segítség</button>
+          <button (click)="runPython(exercise)" class="run-button" [disabled]="isRunning() || !isPythonReady()">
+            {{ isRunning() ? 'Futás...' : (isPythonReady() ? 'Kód futtatása ▶' : 'Python betöltése...') }}
+          </button>
+        </div>
+        </div>
+
+        <section class="solution-view" [hidden]="activeExerciseView !== 'solution'" aria-label="Teljes megoldás">
+          <div class="exercise-heading">
+            <div>
+              <p class="exercise-stage">Teljes megoldás</p>
+              <h4>{{ exercise.title }}</h4>
+            </div>
+            <div class="solution-actions">
+              <button type="button" class="run-button" (click)="copySolution(exercise)">Kód másolása</button>
+              <button type="button" class="run-button" (click)="loadSolution(exercise)">Megoldás betöltése a szerkesztőbe</button>
+            </div>
+          </div>
+          <p class="copy-status" aria-live="polite">{{ copyStatus() }}</p>
+          <pre class="example-code"><code>{{ exercise.solutionCode }}</code></pre>
+        </section>
+      </article>
+    </div>
+  </div>
+</div>

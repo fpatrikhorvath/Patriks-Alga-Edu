@@ -1,0 +1,22 @@
+<div class="app-header-wrapper">
+  <div class="logo">
+    <a routerLink="/" class="logo-link" (click)="activeTabId = null">Horváth Patrik Oktatás</a>
+  </div>
+
+  <nav class="nav-links">
+    <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" class="nav-item" (click)="activeTabId = null">
+      Kezdőlap
+    </a>
+
+    @for (tab of algorithmTabs; track tab.id) {
+      <button
+        (click)="selectTask(tab)"
+        [class.active]="activeTabId === tab.id"
+        class="nav-item">
+        {{ tab.shortLabel }}
+      </button>
+    }
+  </nav>
+
+  <div class="spacer"></div>
+</div>

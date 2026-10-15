@@ -1,0 +1,171 @@
+.home-container {
+  min-height: calc(100vh - 88px);
+  padding: clamp(3rem, 8vw, 7rem) clamp(1.5rem, 8vw, 9rem);
+  background: linear-gradient(120deg, #0f172a 0%, #111827 55%, #172554 100%);
+  color: #ffffff;
+}
+
+.intro-content {
+  max-width: 980px;
+  animation: fadeIn 0.8s ease-out;
+}
+
+.eyebrow,
+.section-label {
+  margin: 0 0 0.75rem;
+  color: #7dd3fc;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.intro-content h1 {
+  max-width: 760px;
+  margin: 0;
+  color: #f8fafc;
+  font-size: 2.7rem;
+  line-height: 0.98;
+  letter-spacing: -0.04em;
+}
+
+.intro-content h2 {
+  margin: 1.25rem 0 2rem;
+  color: #bae6fd;
+  font-size: 1.7rem;
+  line-height: 1.05;
+  font-weight: 500;
+}
+
+.summary {
+  max-width: 680px;
+  margin: 0;
+  color: #dbeafe;
+  font-size: 1rem;
+  line-height: 1.8;
+}
+
+.start-link {
+  display: inline-block;
+  margin-top: 1.5rem;
+  padding: 1rem 1.45rem;
+  border: 1px solid #7dd3fc;
+  border-radius: 8px;
+  color: #f8fafc;
+  font-weight: 700;
+  font-size: 0.95rem;
+  text-decoration: none;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.start-link:hover {
+  background: #7dd3fc;
+  color: #0f172a;
+}
+
+.link-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.4rem;
+  margin: 0 0 2.5rem;
+}
+
+.link-list a {
+  color: #f8fafc;
+  font-size: 0.95rem;
+  font-weight: 700;
+  text-decoration: none;
+  border-bottom: 1px solid #38bdf8;
+  padding-bottom: 0.25rem;
+  transition: color 0.2s ease, border-color 0.2s ease;
+}
+
+.link-list a:hover {
+  color: #7dd3fc;
+  border-color: #f8fafc;
+}
+
+.profile-section {
+  max-width: 900px;
+  padding-top: 1.5rem;
+  border-top: 1px solid rgba(148, 163, 184, 0.25);
+}
+
+.about-section {
+  margin-bottom: 2.5rem;
+}
+
+.experience-list {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 2rem;
+}
+
+.experience-list article {
+  padding-left: 1rem;
+  border-left: 2px solid #38bdf8;
+}
+
+.experience-list h3 {
+  margin: 0 0 0.45rem;
+  color: #f8fafc;
+  font-size: 0.9rem;
+}
+
+.experience-list p,
+.experience-list span,
+.compact-section p:not(.section-label) {
+  color: #bfdbfe;
+  line-height: 1.6;
+}
+
+.experience-list p {
+  margin: 0 0 0.5rem;
+  font-size: 0.8rem;
+}
+
+.experience-list span {
+  font-size: 0.8rem;
+}
+
+.compact-section {
+  margin-top: 2.5rem;
+}
+
+.compact-section p:not(.section-label) {
+  margin: 0.35rem 0;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 760px) {
+  .home-container {
+    padding: 3rem 1.25rem;
+  }
+
+  .intro-content h1 {
+    font-size: 2rem;
+  }
+
+  .intro-content h2 {
+    font-size: 1.3rem;
+  }
+
+  .experience-list {
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+  }
+
+  .link-list {
+    margin-bottom: 3rem;
+  }
+}

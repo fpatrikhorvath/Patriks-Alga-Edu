@@ -1,0 +1,15 @@
+{
+  "projects": {
+    "default": "patrik-s-devedu"
+  },
+  "targets": {
+    "patrik-s-devedu": {
+      "hosting": {
+        "oktatas": [
+          "horvat-patrikdevedu"
+        ]
+      }
+    }
+  },
+  "etags": {}
+}

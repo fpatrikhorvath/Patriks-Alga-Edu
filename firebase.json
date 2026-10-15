@@ -1,0 +1,17 @@
+{
+  "hosting": {
+    "target": "oktatas",
+    "public": "dist/dev-edu-portfolio/browser",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ],
+    "rewrites": [
+      {
+        "source": "**",
+        "destination": "/index.html"
+      }
+    ]
+  }
+}

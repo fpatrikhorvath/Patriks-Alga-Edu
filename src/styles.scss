@@ -1,0 +1,66 @@
+* {
+	box-sizing: border-box;
+}
+
+html,
+body {
+	margin: 0;
+	min-height: 100%;
+}
+
+html {
+	font-size: 18px;
+}
+
+body {
+	background: #0f172a;
+}
+
+.solution-actions {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 0.75rem;
+}
+
+.solution-actions {
+	flex-wrap: wrap;
+}
+
+.editor-toolbar {
+	display: flex;
+	justify-content: space-between;
+	gap: 0.75rem;
+	padding: 0.75rem 0;
+}
+
+.clear-button {
+	border: 1px solid rgba(148, 163, 184, 0.3);
+	border-radius: 8px;
+	padding: 0.7rem 1rem;
+	background: transparent;
+	color: #cbd5e1;
+	font: inherit;
+	cursor: pointer;
+}
+
+.clear-button:hover {
+	background: rgba(148, 163, 184, 0.1);
+	color: #f8fafc;
+}
+
+.copy-guidance,
+.copy-status {
+	color: #bfdbfe;
+	line-height: 1.5;
+}
+
+.copy-status:empty {
+	display: none;
+}
+
+.maze-figure img {
+	display: block;
+	max-width: 100%;
+	height: auto;
+}
