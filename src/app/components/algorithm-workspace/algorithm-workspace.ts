@@ -73,7 +73,10 @@ export class AlgorithmWorkspace implements OnInit {
     let skipping = false;
     for (const line of code.split(/\r?\n/)) {
       const isComment = /^\s*#/.test(line);
-      if (/^\s*#\s*(Feladat|Segitseg):/.test(line)) {
+      if (
+        /^\s*#\s*(Feladat|Segitseg):/.test(line) ||
+        /^\s*#\s*(Állítsd meg a keresést|Vizsgáld meg a szomszédos mezőt)/.test(line)
+      ) {
         skipping = true;
         continue;
       }
